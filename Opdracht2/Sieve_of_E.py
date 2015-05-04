@@ -1,10 +1,8 @@
 import time
 import sys
-print('Number of arguments:', len(sys.argv), 'arguments.')
-print('Argument List:', str(sys.argv))
 
 prime= open('prime.dat','w')
-N=int(input('N='))
+N=int(sys.argv[1])
 t=[x for x in range(2,N)]
 priemen=[]
 def P(a):
