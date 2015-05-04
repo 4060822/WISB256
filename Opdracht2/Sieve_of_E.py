@@ -1,7 +1,7 @@
 import time
 import sys
 
-prime= open('prime.dat','w')
+prime= open(str(sys.argv[2]),'w')
 N=int(sys.argv[1])
 t=[x for x in range(2,N)]
 priemen=[]
