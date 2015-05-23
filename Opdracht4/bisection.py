@@ -2,13 +2,22 @@ import math
 def findRoot(f,a,b,epsilon):
     while float((b-a)/2)>float(epsilon):
         m=float((a+b)/2)
+        if f(a)==0:
+            return a
+        if f(b)==0: 
+            return b
         if f(m)==0:
             return m
         elif f(a)*f(m)<0:
             b=m
         else:
             a=m
-    return m
+    if math.fabs(f(m))<math.fabs(f(a)) and math.fabs(f(m))<math.fabs(f(a)):
+        return m
+    elif math.fabs(f(a))<math.fabs(f(b)):
+        return b
+    else:
+        return a
 def findAllRoots(f,a,b,epsilon):
     l=[]
     while float(b-a)>float(.1):
