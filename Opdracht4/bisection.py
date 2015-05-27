@@ -8,7 +8,12 @@ def findRoot(f,a,b,epsilon):
             b=m
         else:
             a=m
-    return m
+    if math.fabs(f(m))<math.fabs(f(a)) and math.fabs(f(m))<math.fabs(f(b)):
+        return m
+    if math.fabs(f(a))<math.fabs(f(m)):
+        return a
+    else:
+        return b
 def findAllRoots(f,a,b,epsilon):
     l=[]
     while float(b-a)>float(.1):
