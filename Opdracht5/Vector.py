@@ -20,13 +20,13 @@ class Vector:
         outcome=[0]*len(self._vector)
         for i in range(0,len(self._vector)):
             outcome[i]=self._vector[i]+other._vector[i]
-        return outcome
+        return Vector(len(outcome),outcome)
         
     def lincomb(self,other,a,b):
         outcome=[0]*len(self._vector)
         for i in range(0,len(self._vector)):
             outcome[i]=a*self._vector[i]+b*other._vector[i]
-        return outcome
+        return Vector(len(outcome),outcome)
         
     def scalar(self,a):
         return self.lincomb(Vector(len(self._vector)),a,0)
@@ -48,6 +48,4 @@ def GrammSchmidt(V):
             for j in range(0,i-1):
                 SUM=SUM+W[j].scalar(V[i].inner(W[j])/W[j].norm())
             W.append(SUM.scalar(1/(SUM.norm())))
-    for i in range(0,len(W)):
-        W[i]=Vector(len(W[i]),W[i])
     return W
