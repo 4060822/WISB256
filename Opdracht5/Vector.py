@@ -35,17 +35,23 @@ class Vector:
         outcome=[]
         for i in range(0,len(self._vector)):
             outcome.append(str(self._vector[i]*other._vector[i]))
-        return eval('+'.join(outcome))
+        return float(eval('+'.join(outcome)))
         
     def norm(self):
-        return math.sqrt(self.inner(self))
+        return float(math.sqrt(self.inner(self)))
     
+    def proj(self,other):
+        w=self.inner(other)/(self.inner(self))
+        return self.scalar(w)
+
 def GrammSchmidt(V):
-    W=[V[0].scalar(1/(V[0].norm()))]
-    if len(V)>1:
-        for i in range(1,len(V)):
-            SUM=V[i]
-            for j in range(0,i-1):
-                SUM=SUM+W[j].scalar(V[i].inner(W[j])/W[j].norm())
-            W.append(SUM.scalar(1/(SUM.norm())))
+    W=[V[0]]
+    for i in range(1,len(V)):
+        SUM=V[i]
+        for j in range(0,i):
+            SUM=SUM+(W[j].proj(V[i])).scalar(-1)
+        W.append(SUM)
+    for i in range(0,len(W)):
+        w=1/(W[i].norm())
+        W[i]=W[i].scalar(w)
     return W
