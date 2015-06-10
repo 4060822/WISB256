@@ -1,5 +1,4 @@
 from numpy import *
-import matplotlib as plt
 from scipy.integrate import odeint
 def func(I,t):
     xt=I[0]
@@ -10,7 +9,7 @@ def func(I,t):
     B=8/3
     xdot=S*(yt-xt)
     ydot=xt*(R-zt)-yt
-    zdot=xt*zt-B*zt
+    zdot=xt*yt-B*zt
     return [xdot,ydot,zdot]
 class Lorenz:
     def __init__(self,I,sigma=10,rho=28,beta=8/3):
