@@ -1,12 +1,9 @@
 from numpy import *
 from scipy.integrate import odeint
-def func(I,t):
+def func(I,t,S,R,B):
     xt=I[0]
     yt=I[1]
     zt=I[2]
-    S=10
-    R=28
-    B=8/3
     xdot=S*(yt-xt)
     ydot=xt*(R-zt)-yt
     zdot=xt*yt-B*zt
@@ -20,5 +17,5 @@ class Lorenz:
         
     def solve(self,T,dt):
         t=arange(0,T+dt,dt)
-        return odeint(func,self._I,t)
+        return odeint(func,self._I,t,(self._S,self._R,self._B))
         
